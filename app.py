@@ -15,7 +15,7 @@ bathrooms = st.number_input("Number of bathrooms:", min_value=1, max_value=20, s
 
 @st.cache
 def load_data():
-    data_url = "https://raw.githubusercontent.com/your_username/your_repository_name/main/housing_data.csv"
+    data_url = "https://github.com/mtarief/streamlit/blob/main/housing_data.csv"
     return pd.read_csv(data_url)
 
 def train_model(df):
