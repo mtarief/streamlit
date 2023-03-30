@@ -10,9 +10,14 @@ st.title("House Price Predictor")
 st.write("Enter the features of the house to predict its price:")
 uploaded_file = st.file_uploader("Upload a CSV file containing housing data:", type=["csv"])
 
-sqft = st.number_input("Square footage:", min_value=500, max_value=10000, step=50)
-bedrooms = st.number_input("Number of bedrooms:", min_value=1, max_value=20, step=1)
-bathrooms = st.number_input("Number of bathrooms:", min_value=1, max_value=20, step=1)
+sqft = st.number_input("Square footage:", min_value=500, max_value=10000, step=50, key="sqft")
+bedrooms = st.number_input("Number of bedrooms:", min_value=1, max_value=20, step=1, key="bedrooms")
+bathrooms = st.number_input("Number of bathrooms:", min_value=1, max_value=20, step=1, key="bathrooms")
+
+# ...
+
+if st.button("Predict Price", key="predict_button"):
+
 
 @st.cache
 def load_data(uploaded_file):
