@@ -8,16 +8,12 @@ from sklearn.metrics import mean_squared_error, r2_score
 st.title("House Price Predictor")
 
 st.write("Enter the features of the house to predict its price:")
-uploaded_file = st.file_uploader("Upload a CSV file containing housing data:", type=["csv"])
 
 sqft = st.number_input("Square footage:", min_value=500, max_value=10000, step=50, key="sqft")
 bedrooms = st.number_input("Number of bedrooms:", min_value=1, max_value=20, step=1, key="bedrooms")
 bathrooms = st.number_input("Number of bathrooms:", min_value=1, max_value=20, step=1, key="bathrooms")
 
-# ...
-
-if st.button("Predict Price", key="predict_button"):
-
+uploaded_file = st.file_uploader("Upload a CSV file containing housing data:", type=["csv"])
 
 @st.cache
 def load_data(uploaded_file):
@@ -46,21 +42,9 @@ if uploaded_file is not None:
     st.write("Mean Squared Error:", mse)
     st.write("R-squared:", r2)
 
-    if st.button("Predict Price"):
+    if st.button("Predict Price", key="predict_button"):
         input_features = np.array([sqft, bedrooms, bathrooms]).reshape(1, -1)
         prediction = model.predict(input_features)
         st.write("Predicted price:", round(prediction[0], 2))
 else:
     st.write("Please upload a CSV file to get started.")
-    
-
-model, mse, r2 = train_model(df)
-
-st.write("Mean Squared Error:", mse)
-st.write("R-squared:", r2)
-
-if st.button("Predict Price"):
-    input_features = np.array([sqft, bedrooms, bathrooms]).reshape(1, -1)
-    prediction = model.predict(input_features)
-    st.write("Predicted price:", round(prediction[0], 2))
-
