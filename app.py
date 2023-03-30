@@ -47,6 +47,7 @@ if uploaded_file is not None:
         st.write("Predicted price:", round(prediction[0], 2))
 else:
     st.write("Please upload a CSV file to get started.")
+    
 
 model, mse, r2 = train_model(df)
 
